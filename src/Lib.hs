@@ -1,3 +1,4 @@
+{-# LANGUAGE MultiParamTypeClasses #-}
 module Lib
     ( someFunc
     ) where
@@ -9,6 +10,20 @@ someFunc = putStrLn "someFunc"
 
 data Sport = Football
 
+newtype Bet a = Bet
+  { betChoices :: [Choice a]
+  } deriving (Eq, Show)
+
+data Choice a = Choice
+  { choiceValue :: a
+  , choiceOdd :: Double
+  } deriving (Eq, Show)
+
+class (Eq c) => Scorable s c where
+  toChoice :: s -> c
+  filterScores :: c -> [s] -> [s]
+  filterScores c = filter (\s -> c == toChoice s)
+
 data FootballScore = FootballScore
   { halfTime1 :: Natural
   , halfTime2 :: Natural
@@ -19,7 +34,10 @@ data FootballScore = FootballScore
 data FootballCorrectScore = FootballCorrectScore
   { correctScore1 :: Natural
   , correctScore2 :: Natural
-  }
+  } deriving (Eq, Show)
+
+instance Scorable FootballScore FootballCorrectScore where
+  toChoice = toCorrectScore
 
 toCorrectScore :: FootballScore -> FootballCorrectScore
 toCorrectScore fs =
@@ -50,12 +68,3 @@ newtype FootballHalfFullTime = FootballHalfFullTime (FootballHalfTime, FootballF
 
 toHalfFullTime :: FootballScore -> FootballHalfFullTime
 toHalfFullTime s = FootballHalfFullTime (toHalfTime s, toMr3 s)
-
-newtype Bet a = Bet
-  { betChoices :: [Choice a]
-  } deriving (Eq, Show)
-
-data Choice a = Choice
-  { choiceValue :: a
-  , choiceOdd :: Double
-  } deriving (Eq, Show)
