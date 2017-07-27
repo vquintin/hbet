@@ -3,11 +3,23 @@
 {-# LANGUAGE FlexibleInstances #-}
 
 module HBet.Football
-  ( FootballScore
-  , FootballCorrectScore
-  , FootballFullTime
-  , FootballHalfTime
-  , FootballHalfFullTime
+  ( FootballEvent(..)
+  , FootballMatch
+  , footballTeam1
+  , footballTeam2
+  , footballEvent
+  , FootballScore
+  , halfTime1
+  , halfTime2
+  , fullTime1
+  , fullTime2
+  , FootballBetInfo
+  , match
+  , footballChoices
+  , FootballCorrectScore(FootballCorrectScore)
+  , FootballFullTime(..)
+  , FootballHalfTime(..)
+  , FootballHalfFullTime(FootballHalfFullTime)
   ) where
 
 import Control.Arrow ((&&&))
