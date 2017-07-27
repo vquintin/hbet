@@ -1,24 +1,32 @@
 {-# LANGUAGE MultiParamTypeClasses #-}
+{-# LANGUAGE FunctionalDependencies #-}
 
 module Lib
-  ( Scorable
+  ( Bet
+  , choices
+  , BetType
   , toChoice
+  , filterScores
+  , Choice
+  , choiceValue
+  , choiceOdd
+  , Score
+  , generateScores
   ) where
 
-data Sport =
-  Football
+class Score score where
+  generateScores :: [score]
 
-newtype Bet a = Bet
-  { betChoices :: [Choice a]
-  } deriving (Eq, Show)
+class Bet betType score betInfo | betType -> score, betType score -> betInfo where
+  choices :: betInfo -> [Choice betType]
+
+class (Eq betType) =>
+      BetType betType score | betType -> score where
+  toChoice :: score -> betType
+  filterScores :: betType -> [score] -> [score]
+  filterScores bt = filter (\x -> bt == toChoice x)
 
 data Choice a = Choice
   { choiceValue :: a
   , choiceOdd :: Double
   } deriving (Eq, Show)
-
-class (Eq c) =>
-      Scorable s c where
-  toChoice :: s -> c
-  filterScores :: c -> [s] -> [s]
-  filterScores c = filter (\s -> c == toChoice s)
