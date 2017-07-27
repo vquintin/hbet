@@ -4,22 +4,13 @@
 
 module HBet.Football
   ( FootballEvent(..)
-  , FootballMatch
-  , footballTeam1
-  , footballTeam2
-  , footballEvent
-  , FootballScore
-  , halfTime1
-  , halfTime2
-  , fullTime1
-  , fullTime2
-  , FootballBetInfo
-  , match
-  , footballChoices
-  , FootballCorrectScore(FootballCorrectScore)
+  , FootballMatch(..)
+  , FootballScore(..)
+  , FootballBetInfo(..)
+  , FootballCorrectScore(..)
   , FootballFullTime(..)
   , FootballHalfTime(..)
-  , FootballHalfFullTime(FootballHalfFullTime)
+  , FootballHalfFullTime(..)
   ) where
 
 import Control.Arrow ((&&&))

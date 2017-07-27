@@ -2,16 +2,10 @@
 {-# LANGUAGE FunctionalDependencies #-}
 
 module HBet.Bet
-  ( Bet
-  , choices
-  , BetType
-  , toChoice
-  , filterScores
-  , Choice
-  , choiceValue
-  , choiceOdd
-  , Score
-  , generateScores
+  ( Bet(..)
+  , BetType(..)
+  , Choice(..)
+  , Score(..)
   ) where
 
 class Score score where
