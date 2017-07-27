@@ -1,6 +1,6 @@
 module Main where
 
-import Lib
+import HBet.Bet
 
 main :: IO ()
 main = putStrLn "hello"

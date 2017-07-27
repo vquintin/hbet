@@ -1,7 +1,7 @@
 {-# LANGUAGE MultiParamTypeClasses #-}
 {-# LANGUAGE FunctionalDependencies #-}
 
-module Lib
+module HBet.Bet
   ( Bet
   , choices
   , BetType

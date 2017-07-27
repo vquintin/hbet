@@ -2,7 +2,7 @@
 {-# LANGUAGE FlexibleContexts #-}
 {-# LANGUAGE FlexibleInstances #-}
 
-module Football
+module HBet.Football
   ( FootballScore
   , FootballCorrectScore
   , FootballFullTime
@@ -11,7 +11,7 @@ module Football
   ) where
 
 import Control.Arrow ((&&&))
-import Lib
+import HBet.Bet
        (Bet, BetType, Choice, Score, choices, generateScores, toChoice)
 import Numeric.Natural
 
