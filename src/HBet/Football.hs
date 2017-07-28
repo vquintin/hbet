@@ -23,8 +23,18 @@ data FootballEvent
   = WorldCup
   | PremierLeague
   | Ligue1
-  | Bundesliga
+  | GermanBundesliga
   | LigaPrimera
+  | ItalianSerieA
+  | ChampionsLeague
+  | Ligue2
+  | DutchEredivisie
+  | BelgianFirstDivisionA
+  | SwissSuperLeague
+  | EnglishChampionship
+  | GermanBundesliga2
+  | ItalianSerieB
+  | PrimeiraLiga
   deriving (Eq, Show)
 
 data FootballMatch = FootballMatch
