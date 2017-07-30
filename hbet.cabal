@@ -1,5 +1,5 @@
 name:                hbet
-version:             0.2.3.0
+version:             0.2.4.0
 -- synopsis:
 -- description:
 homepage:            https://github.com/githubuser/hbet#readme
@@ -17,6 +17,7 @@ library
   hs-source-dirs:      src
   exposed-modules:     HBet.Bet
                      , HBet.Football
+                       HBet.BetSum
   build-depends:       base >= 4.7 && < 5
   default-language:    Haskell2010
 
