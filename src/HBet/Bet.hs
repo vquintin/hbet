@@ -1,26 +1,27 @@
 {-# LANGUAGE MultiParamTypeClasses #-}
-{-# LANGUAGE FunctionalDependencies #-}
+{-# LANGUAGE TypeFamilies #-}
 
 module HBet.Bet
-  ( Bet(..)
-  , BetType(..)
+  ( Bettable(..)
   , Choice(..)
   , Score(..)
   ) where
 
-class Score score where
-  generateScores :: [score]
+class Bettable eventInfo where
+  data Score eventInfo :: *
+  generateScores :: [Score eventInfo]
 
-class Bet betType score betInfo | betType -> score, betType score -> betInfo where
-  choices :: betInfo -> [Choice betType]
-
-class (Eq betType) =>
-      BetType betType score | betType -> score where
-  toChoice :: score -> betType
-  filterScores :: betType -> [score] -> [score]
-  filterScores bt = filter (\x -> bt == toChoice x)
-
-data Choice a = Choice
-  { choiceValue :: a
+data Choice eventInfo idty = Choice
+  { tag :: idty
+  , validate :: Score eventInfo -> BetResult
+  , eventInfo :: eventInfo
   , choiceOdd :: Double
-  } deriving (Eq, Show)
+  }
+
+instance (Eq idty) => Eq (Choice score idty) where
+  a == b = tag a == tag b && choiceOdd a == choiceOdd b
+
+data BetResult
+  = Win
+  | Void
+  | Lose
