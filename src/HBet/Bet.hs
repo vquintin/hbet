@@ -5,6 +5,7 @@ module HBet.Bet
   ( Bettable(..)
   , Choice(..)
   , Score(..)
+  , BetResult(..)
   ) where
 
 class Bettable eventInfo where
