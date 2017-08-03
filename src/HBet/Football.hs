@@ -4,6 +4,7 @@
 module HBet.Football
   ( FootballCompetition(..)
   , FootballMatch(..)
+  , Score(..)
   ) where
 
 import Control.Arrow ((&&&))
