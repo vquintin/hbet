@@ -9,7 +9,6 @@ module HBet.Football
 
 import Control.Arrow ((&&&))
 import HBet.Bet (Bettable, Choice, Score, generateScores)
-import Numeric.Natural
 
 {- football event info -}
 data FootballCompetition
@@ -37,9 +36,8 @@ data FootballMatch = FootballMatch
   } deriving (Eq, Show)
 
 instance Bettable FootballMatch where
-  data Score FootballMatch = FootballScore{halfTime1 :: Natural,
-                                         halfTime2 :: Natural, fullTime1 :: Natural,
-                                         fullTime2 :: Natural}
+  data Score FootballMatch = FootballScore{halfTime1 :: Int,
+                                         halfTime2 :: Int, fullTime1 :: Int, fullTime2 :: Int}
                          deriving (Eq, Show)
   generateScores = fmap toScore tuples
     where
