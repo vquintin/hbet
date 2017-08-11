@@ -6,6 +6,8 @@ module HBet.Bet
   , Choice(..)
   , Score(..)
   , BetResult(..)
+  , winOrLose
+  , voidable
   ) where
 
 class Bettable eventInfo where
@@ -26,3 +28,16 @@ data BetResult
   = Win
   | Void
   | Lose
+
+winOrLose :: (a -> Bool) -> (a -> BetResult)
+winOrLose prd = g . prd
+  where
+    g True = Win
+    g False = Lose
+
+voidable :: (a -> Bool) -> (a -> Bool) -> (a -> BetResult)
+voidable win voided x =
+  case (voided x, win x) of
+    (True, _) -> Void
+    (_, True) -> Win
+    (_, False) -> Lose
