@@ -3,6 +3,10 @@
 
 module HBet.Football
   ( Football(..)
+  , Score(..)
+  , BetType(..)
+  , Competition(..)
+  , Lineup(..)
   ) where
 
 import Control.Arrow ((&&&))
