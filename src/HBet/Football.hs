@@ -2,43 +2,28 @@
 {-# LANGUAGE TypeFamilies #-}
 
 module HBet.Football
-  ( FootballCompetition(..)
-  , FootballMatch(..)
-  , Score(..)
+  ( Football(..)
   ) where
 
 import Control.Arrow ((&&&))
-import HBet.Bet (Bettable, Choice, Score, generateScores)
+import Data.Text (Text)
+import HBet.Bet
+import qualified HBet.Types as T
 
-{- football event info -}
-data FootballCompetition
-  = WorldCup
-  | PremierLeague
-  | Ligue1
-  | GermanBundesliga
-  | LigaPrimera
-  | ItalianSerieA
-  | ChampionsLeague
-  | Ligue2
-  | DutchEredivisie
-  | BelgianFirstDivisionA
-  | SwissSuperLeague
-  | EnglishChampionship
-  | GermanBundesliga2
-  | ItalianSerieB
-  | PrimeiraLiga
-  deriving (Eq, Show)
+data Football
 
-data FootballMatch = FootballMatch
-  { footballTeam1 :: String
-  , footballTeam2 :: String
-  , footballEvent :: FootballCompetition
-  } deriving (Eq, Show)
-
-instance Bettable FootballMatch where
-  data Score FootballMatch = FootballScore{halfTime1 :: Int,
-                                         halfTime2 :: Int, fullTime1 :: Int, fullTime2 :: Int}
-                         deriving (Eq, Show)
+instance Sport Football where
+  data Score Football = FootballScore{halfTime1 :: Int,
+                                    halfTime2 :: Int, fullTime1 :: Int, fullTime2 :: Int}
+                    deriving (Eq, Show)
+  data BetType Football = HalfTimeWinOrDraw T.WinOrDraw
+                      | FullTimeWinOrDraw T.WinOrDraw
+                      deriving (Eq, Show)
+  data Competition Football = ChD1 T.Country
+                          | ChD2 T.Country
+                          deriving (Eq, Show)
+  data Lineup Football = Lineup Text Text
+                     deriving (Eq, Show)
   generateScores = fmap toScore tuples
     where
       toScore (a, b, c, d) = FootballScore a b c d
@@ -51,3 +36,4 @@ instance Bettable FootballMatch where
         , d <- [0 .. n]
         , a + b + c + d == n
         ]
+  validate = undefined
