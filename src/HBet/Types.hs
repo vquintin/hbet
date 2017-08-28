@@ -1,6 +1,6 @@
 module HBet.Types
-  ( Country
-  , WinOrDraw
+  ( Country(..)
+  , WinOrDraw(..)
   ) where
 
 data Country
