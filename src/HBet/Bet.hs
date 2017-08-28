@@ -7,6 +7,7 @@
 module HBet.Bet
   ( Choice(..)
   , Sport(..)
+  , Match(..)
   , BetResult(..)
   , winOrLose
   , voidable
