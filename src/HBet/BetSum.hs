@@ -7,4 +7,4 @@ import qualified HBet.Football as FB
 
 newtype ChoiceSum idty =
   Football (HB.Choice FB.Football idty)
-  deriving (Eq)
+  deriving (Eq, Show)

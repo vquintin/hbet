@@ -38,8 +38,13 @@ data Choice sport idty = Choice
   , choiceOdd :: Double
   }
 
-instance (Eq idty) => Eq (Choice score idty) where
-  a == b = tag a == tag b && choiceOdd a == choiceOdd b
+deriving instance
+         (Eq (Match sport), Eq (BetType sport), Eq idty) =>
+         Eq (Choice sport idty)
+
+deriving instance
+         (Show (Match sport), Show (BetType sport), Show idty) =>
+         Show (Choice sport idty)
 
 data BetResult
   = Win
