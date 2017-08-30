@@ -22,6 +22,11 @@ instance Sport Football where
                     deriving (Eq, Show)
   data BetType Football = HalfTimeWinOrDraw T.WinOrDraw
                       | FullTimeWinOrDraw T.WinOrDraw
+                      | HTFTWinOrDraw T.WinOrDraw T.WinOrDraw
+                      | Handicap Int T.WinOrDraw
+                      | ExactScore Int Int
+                      | DoubleChance T.WinOrDraw T.WinOrDraw
+                      | NumberOfGoals Ordering Double
                       deriving (Eq, Show)
   data Competition Football = ChD1 T.Country
                           | ChD2 T.Country
