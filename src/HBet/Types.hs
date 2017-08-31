@@ -6,16 +6,21 @@ module HBet.Types
 data Country
   = Belgium
   | Bulgaria
+  | Brasil
   | Chile
+  | Columbia
   | Croatia
+  | England
   | France
   | Germany
   | Ireland
+  | Italia
   | Japan
   | Mexico
   | Poland
-  | Slovenia
   | Romania
+  | Slovenia
+  | USA
   deriving (Eq, Show)
 
 data WinOrDraw
