@@ -20,6 +20,7 @@ data Country
   | Poland
   | Romania
   | Slovenia
+  | Spain
   | USA
   deriving (Eq, Show)
 
